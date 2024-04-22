@@ -1,6 +1,6 @@
 const express = require('express')
 const {login,register,forgetPass,resetPass,profile,logout} = require('../contrallers/authContraller')
-
+const authMiddleware = require('../middleware/authMiddleware')
 const router = express.Router()
 
 
@@ -17,7 +17,7 @@ router.post('/forgetPassword',forgetPass)
 router.post('/resetPassword',resetPass)
 
 //profile
-router.get('/profile',profile)
+router.get('/profile',authMiddleware,profile)
 
 //logout
 router.post('/logout',logout)
